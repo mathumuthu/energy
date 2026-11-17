@@ -101,6 +101,7 @@
                     <div class="header-profile-info">
                         <div class="name">John Doe</div>
                         <div class="role">Renewable energy customer</div>
+                        <div class="header-profile-email" id="headerEmail"></div>
                     </div>
                     <div class="header-avatar">JD</div>
                 </div>
@@ -598,7 +599,7 @@
                                 <div class="info-row">
                                     <div class="info-row-left">
                                         <i class="fas fa-envelope" style="color: var(--gray-400);"></i>
-                                        <span id="profileEmail">john.doe@customer.com</span>
+                                        <span id="profileEmail"></span>
                                     </div>
                                 </div>
                                 <div class="info-row">
@@ -641,7 +642,7 @@
                                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                                     <div class="form-group">
                                         <label class="form-label">Email</label>
-                                        <input type="email" class="form-input" id="profileEmailInput" value="john.doe@customer.com">
+                                        <input type="email" class="form-input" id="profileEmailInput">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Phone</label>
@@ -1073,10 +1074,13 @@ body {
     gap: 12px;
     padding-left: 16px;
     border-left: 1px solid var(--gray-200);
+    min-width: 0;
 }
 
 .header-profile-info {
     text-align: right;
+    min-width: 0;
+    max-width: 280px;
 }
 
 .header-profile-info .name {
@@ -1088,6 +1092,21 @@ body {
 .header-profile-info .role {
     font-size: 11px;
     color: var(--gray-400);
+}
+
+.header-profile-email {
+    font-size: 12px;
+    line-height: 1.25;
+    color: var(--gray-500);
+    overflow-wrap: anywhere;
+}
+
+.header-profile-email:empty {
+    display: none;
+}
+
+#profileEmail {
+    overflow-wrap: anywhere;
 }
 
 .header-avatar {
@@ -2001,8 +2020,13 @@ body {
     .grid-2 { grid-template-columns: 1fr; }
     .content-area { padding: 16px; }
     .header-search { display: none; }
-    .header-profile-info { display: none; }
-    .top-header { padding: 0 16px; }
+    .header-right { gap: 8px; min-width: 0; }
+    .header-profile { gap: 8px; padding-left: 8px; }
+    .header-profile-info { display: block; width: calc(100vw - 200px); max-width: 280px; }
+    .header-profile-info .name,
+    .header-profile-info .role { display: none; }
+    .header-profile-email { font-size: 11px; }
+    .top-header { height: auto; min-height: var(--header-height); padding: 8px 16px; }
     .chart-container { height: 240px; }
     .farm-grid { grid-template-columns: repeat(2, 1fr); }
     .weather-temp { font-size: 32px; }
@@ -2139,7 +2163,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function populateCustomerProfile() {
     const name = localStorage.getItem('loggedInName') || localStorage.getItem('userName');
-    const email = localStorage.getItem('loggedInEmail') || localStorage.getItem('userEmail');
+    const email = localStorage.getItem('loggedInEmail');
+    const emailElement = document.getElementById('headerEmail');
+    if (emailElement && email) emailElement.textContent = 'Email: ' + email;
     const initials = name ? name.trim().split(/\s+/).slice(0, 2).map(part => part.charAt(0)).join('').toUpperCase() : '';
 
     if (name) {

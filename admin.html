@@ -119,6 +119,7 @@
                     <div class="header-profile-info">
                         <div class="name">Admin User</div>
                         <div class="role">Energy Administrator</div>
+                        <div class="header-profile-email" id="headerEmail"></div>
                     </div>
                     <div class="header-avatar">A</div>
                 </div>
@@ -359,10 +360,10 @@
                                     <td style="font-weight: 700;">842 kWh</td>
                                     <td><span class="badge badge-success">Active</span></td>
                                     <td>
-                                        <div class="table-actions">
+                                      <a href="404.html"> <div class="table-actions">
                                             <button><i class="fas fa-edit"></i></button>
                                             <button class="delete"><i class="fas fa-trash"></i></button>
-                                        </div>
+                                        </div></a> 
                                     </td>
                                 </tr>
                                 <tr>
@@ -380,10 +381,10 @@
                                     <td style="font-weight: 700;">1,120 kWh</td>
                                     <td><span class="badge badge-success">Active</span></td>
                                     <td>
-                                        <div class="table-actions">
+                                    <a href="404.html"> <div class="table-actions">
                                             <button><i class="fas fa-edit"></i></button>
                                             <button class="delete"><i class="fas fa-trash"></i></button>
-                                        </div>
+                                        </div></a> 
                                     </td>
                                 </tr>
                                 <tr>
@@ -401,10 +402,12 @@
                                     <td style="font-weight: 700;">648 kWh</td>
                                     <td><span class="badge badge-warning">Pending</span></td>
                                     <td>
-                                        <div class="table-actions">
-                                            <button><i class="fas fa-edit"></i></button>
-                                            <button class="delete"><i class="fas fa-trash"></i></button>
-                                        </div>
+                                        <a href="404.html">
+                                            <div class="table-actions">
+                                                <button><i class="fas fa-edit"></i></button>
+                                                <button class="delete"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -422,10 +425,12 @@
                                     <td style="font-weight: 700;">915 kWh</td>
                                     <td><span class="badge badge-success">Active</span></td>
                                     <td>
-                                        <div class="table-actions">
-                                            <button><i class="fas fa-edit"></i></button>
-                                            <button class="delete"><i class="fas fa-trash"></i></button>
-                                        </div>
+                                        <a href="404.html">
+                                            <div class="table-actions">
+                                                <button><i class="fas fa-edit"></i></button>
+                                                <button class="delete"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -443,10 +448,12 @@
                                     <td style="font-weight: 700;">704 kWh</td>
                                     <td><span class="badge badge-success">Active</span></td>
                                     <td>
-                                        <div class="table-actions">
-                                            <button><i class="fas fa-edit"></i></button>
-                                            <button class="delete"><i class="fas fa-trash"></i></button>
-                                        </div>
+                                        <a href="404.html">
+                                            <div class="table-actions">
+                                                <button><i class="fas fa-edit"></i></button>
+                                                <button class="delete"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -464,10 +471,12 @@
                                     <td style="font-weight: 700;">1,304 kWh</td>
                                     <td><span class="badge badge-danger">Inactive</span></td>
                                     <td>
-                                        <div class="table-actions">
-                                            <button><i class="fas fa-edit"></i></button>
-                                            <button class="delete"><i class="fas fa-trash"></i></button>
-                                        </div>
+                                        <a href="404.html">
+                                            <div class="table-actions">
+                                                <button><i class="fas fa-edit"></i></button>
+                                                <button class="delete"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -475,10 +484,10 @@
                     </div>
                     <div style="padding: 16px 20px; border-top: 1px solid var(--gray-100); display: flex; justify-content: space-between; align-items: center;">
                         <span style="font-size: 13px; color: var(--gray-500);">Showing 6 of 1,284 customers</span>
-                        <div style="display: flex; gap: 8px;">
+                     <a href="404.html">   <div style="display: flex; gap: 8px;">
                             <button class="btn btn-sm btn-secondary">Previous</button>
                             <button class="btn btn-sm btn-secondary">Next</button>
-                        </div>
+                        </div></a>
                     </div>
                 </div>
             </div>
@@ -1285,10 +1294,13 @@ body {
     gap: 12px;
     padding-left: 16px;
     border-left: 1px solid var(--gray-200);
+    min-width: 0;
 }
 
 .header-profile-info {
     text-align: right;
+    min-width: 0;
+    max-width: 280px;
 }
 
 .header-profile-info .name {
@@ -1300,6 +1312,17 @@ body {
 .header-profile-info .role {
     font-size: 11px;
     color: var(--gray-400);
+}
+
+.header-profile-email {
+    font-size: 12px;
+    line-height: 1.25;
+    color: var(--gray-500);
+    overflow-wrap: anywhere;
+}
+
+.header-profile-email:empty {
+    display: none;
 }
 
 .header-avatar {
@@ -2234,8 +2257,13 @@ body {
     .grid-2 { grid-template-columns: 1fr; }
     .content-area { padding: 16px; }
     .header-search { display: none; }
-    .header-profile-info { display: none; }
-    .top-header { padding: 0 16px; }
+    .header-right { gap: 8px; min-width: 0; }
+    .header-profile { gap: 8px; padding-left: 8px; }
+    .header-profile-info { display: block; width: calc(100vw - 200px); max-width: 280px; }
+    .header-profile-info .name,
+    .header-profile-info .role { display: none; }
+    .header-profile-email { font-size: 11px; }
+    .top-header { height: auto; min-height: var(--header-height); padding: 8px 16px; }
     .chart-container { height: 240px; }
     .farm-grid { grid-template-columns: repeat(2, 1fr); }
     .weather-temp { font-size: 32px; }
@@ -2333,6 +2361,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function populateAdminProfile() {
     const name = localStorage.getItem('loggedInName') || localStorage.getItem('userName');
+    const email = localStorage.getItem('loggedInEmail');
+    const emailElement = document.getElementById('headerEmail');
+    if (emailElement && email) emailElement.textContent = 'Email: ' + email;
     if (!name) return;
 
     const initials = name.trim().split(/\s+/).slice(0, 2).map(part => part.charAt(0)).join('').toUpperCase();

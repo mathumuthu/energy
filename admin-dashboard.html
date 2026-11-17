@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Bloom | Care Center Admin</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="care-theme.css?v=2">
+</head>
+<body class="admin-dashboard">
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Logo Area -->
+        <div class="sidebar-header">
+            <a href="index.html" class="logo">
+                <img src="care-mark.svg" alt="Little Bloom logo" class="logo-img">
+                <span class="logo-text">Little Bloom</span>
+            </a>
+            <button class="sidebar-close d-lg-none" id="sidebarClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li class="menu-item active" data-section="dashboard">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-th-large menu-icon"></i>
+                        <span class="menu-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item" data-section="care-plans">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-seedling menu-icon"></i>
+                        <span class="menu-text">Care Plans</span>
+                    </a>
+                </li>
+                <li class="menu-item" data-section="daycare-rooms">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-baby-carriage menu-icon"></i>
+                        <span class="menu-text">Daycare Rooms</span>
+                    </a>
+                </li>
+                <li class="menu-item" data-section="health-safety">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-shield-alt menu-icon"></i>
+                        <span class="menu-text">Health & Safety</span>
+                    </a>
+                </li>
+                <li class="menu-item" data-section="family-connections">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-users menu-icon"></i>
+                        <span class="menu-text">Family Connections</span>
+                    </a>
+                </li>
+                <li class="menu-item" data-section="learning-programs">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-seedling menu-icon"></i>
+                        <span class="menu-text">Learning Programs</span>
+                    </a>
+                </li>
+                <li class="menu-item" data-section="support">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-headset menu-icon"></i>
+                        <span class="menu-text">Parent Support</span>
+                    </a>
+                </li>
+                <li class="menu-item" data-section="facilities">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-school menu-icon"></i>
+                        <span class="menu-text">Our Facilities</span>
+                    </a>
+                </li>
+                <li class="menu-item" data-section="analytics">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-chart-line menu-icon"></i>
+                        <span class="menu-text">Center Insights</span>
+                    </a>
+                </li>
+                <li class="menu-item" data-section="settings">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-cog menu-icon"></i>
+                        <span class="menu-text">Settings</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Sign Out Button -->
+            <div class="sidebar-footer">
+                <a href="login.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sign Out</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper" id="mainWrapper">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-left">
+                <!-- Hamburger Menu (Mobile) -->
+                <button class="hamburger-menu d-lg-none" id="hamburgerMenu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <!-- Sidebar Toggle (Desktop) -->
+                <button class="sidebar-toggle d-none d-lg-flex" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="header-right">
+                <!-- Notification -->
+                <div class="header-icon-wrapper">
+                    <a href="contact.html" class="header-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </a>
+                </div>
+                <!-- Messages -->
+                <div class="header-icon-wrapper">
+                    <a href="contact.html" class="header-icon">
+                        <i class="fas fa-envelope"></i>
+                        <span class="notification-badge">8</span>
+                    </a>
+                </div>
+                <!-- Profile Dropdown -->
+                <div class="profile-dropdown" id="profileDropdown">
+                    <button class="profile-btn" id="profileBtn" type="button" aria-expanded="false">
+                        <img src="https://ui-avatars.com/api/?name=Jordan+Lee&background=6366f1&color=fff" alt="Jordan Lee" class="profile-img">
+                        <span class="profile-name d-none d-md-inline">Jordan Lee</span>
+                        <i class="fas fa-chevron-down profile-arrow"></i>
+                    </button>
+                    <div class="dropdown-menu profile-menu" id="profileMenu">
+                        <a href="#settings" class="dropdown-item">
+                            <i class="fas fa-user"></i> My Profile
+                        </a>
+                        <a href="#settings" class="dropdown-item">
+                            <i class="fas fa-cog"></i> Account Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="login.html" class="dropdown-item text-danger">
+                            <i class="fas fa-sign-out-alt"></i> Sign Out
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section class="content-section active" id="dashboard">
+                <div class="section-header">
+                    <h1 class="section-title">Care Center Dashboard</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="row g-4 mb-4">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stat-card">
+                            <div class="stat-card-content">
+                                <div>
+                                    <p class="stat-label">Enrolled Children</p>
+                                    <h3 class="stat-value">2,456</h3>
+                                    <p class="stat-change positive">
+                                        <i class="fas fa-arrow-up"></i> 18.5% from last month
+                                    </p>
+                                </div>
+                                <div class="stat-icon bg-primary-soft">
+                                    <i class="fas fa-seedling text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stat-card">
+                            <div class="stat-card-content">
+                                <div>
+                                    <p class="stat-label">Active Families</p>
+                                    <h3 class="stat-value">1,240</h3>
+                                    <p class="stat-change positive">
+                                        <i class="fas fa-arrow-up"></i> 12.3% from last month
+                                    </p>
+                                </div>
+                                <div class="stat-icon bg-success-soft">
+                                    <i class="fas fa-users text-success"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stat-card">
+                            <div class="stat-card-content">
+                                <div>
+                                    <p class="stat-label">Family Questions</p>
+                                    <h3 class="stat-value">87</h3>
+                                    <p class="stat-change negative">
+                                        <i class="fas fa-arrow-down"></i> 5.2% from last month
+                                    </p>
+                                </div>
+                                <div class="stat-icon bg-warning-soft">
+                                    <i class="fas fa-ticket-alt text-warning"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stat-card">
+                            <div class="stat-card-content">
+                                <div>
+                                    <p class="stat-label">Daily Check-ins</p>
+                                    <h3 class="stat-value">99.9%</h3>
+                                    <p class="stat-change positive">
+                                        <i class="fas fa-arrow-up"></i> 0.1% improvement
+                                    </p>
+                                </div>
+                                <div class="stat-icon bg-info-soft">
+                                    <i class="fas fa-calendar-check text-info"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-8">
+                        <div class="content-card">
+                            <div class="card-header-custom">
+                                <h5 class="card-title">Center Activity</h5>
+                                <a href="contact.html" class="btn btn-sm btn-primary">View Report</a>
+                            </div>
+                            <div class="card-body-custom">
+                                <div class="chart-placeholder">
+                                    <div class="chart-bars">
+                                        <div class="chart-bar" style="height: 65%"></div>
+                                        <div class="chart-bar" style="height: 85%"></div>
+                                        <div class="chart-bar" style="height: 50%"></div>
+                                        <div class="chart-bar" style="height: 95%"></div>
+                                        <div class="chart-bar" style="height: 75%"></div>
+                                        <div class="chart-bar" style="height: 60%"></div>
+                                        <div class="chart-bar" style="height: 90%"></div>
+                                    </div>
+                                    <div class="chart-labels">
+                                        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="content-card">
+                            <div class="card-header-custom">
+                                <h5 class="card-title">Care Services Distribution</h5>
+                            </div>
+                            <div class="card-body-custom">
+                                <div class="distribution-chart">
+                                    <div class="distribution-item">
+                                        <div class="distribution-info">
+                                            <span class="distribution-name">Daycare Rooms</span>
+                                            <span class="distribution-value">32%</span>
+                                        </div>
+                                        <div class="progress-custom">
+                                            <div class="progress-bar-custom bg-primary" style="width: 32%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="distribution-item">
+                                        <div class="distribution-info">
+                                            <span class="distribution-name">Health & Safety</span>
+                                            <span class="distribution-value">28%</span>
+                                        </div>
+                                        <div class="progress-custom">
+                                            <div class="progress-bar-custom bg-danger" style="width: 28%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="distribution-item">
+                                        <div class="distribution-info">
+                                            <span class="distribution-name">Learning Programs</span>
+                                            <span class="distribution-value">22%</span>
+                                        </div>
+                                        <div class="progress-custom">
+                                            <div class="progress-bar-custom bg-success" style="width: 22%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="distribution-item">
+                                        <div class="distribution-info">
+                                            <span class="distribution-name">Parent Support</span>
+                                            <span class="distribution-value">18%</span>
+                                        </div>
+                                        <div class="progress-custom">
+                                            <div class="progress-bar-custom bg-warning" style="width: 18%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Today at Little Bloom Table -->
+                <div class="content-card">
+                    <div class="card-header-custom">
+                        <h5 class="card-title">Today at Little Bloom</h5>
+                        <a href="contact.html" class="btn btn-sm btn-outline-primary">View All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Family ID</th>
+                                    <th>Family Name</th>
+                                    <th>Care You're Interested In</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="care-id">#FAM-2024</span></td>
+                                    <td>
+                                        <div class="client-info">
+                                            <img src="https://ui-avatars.com/api/?name=Busy+Bees&background=random" alt="" class="client-avatar">
+                                            <span>Busy Bees Family</span>
+                                        </div>
+                                    </td>
+                                    <td>Daycare Enrollment</td>
+                                    <td><span class="badge-status status-active">Active</span></td>
+                                    <td>Jul 05, 2026</td>
+                                    <td>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-eye"></i></a>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="care-id">#FAM-2023</span></td>
+                                    <td>
+                                        <div class="client-info">
+                                            <img src="https://ui-avatars.com/api/?name=Rivera+Family&background=random" alt="" class="client-avatar">
+                                            <span>Rivera Family</span>
+                                        </div>
+                                    </td>
+                                    <td>Health & Safety Settling In</td>
+                                    <td><span class="badge-status status-pending">Pending</span></td>
+                                    <td>Jul 04, 2026</td>
+                                    <td>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-eye"></i></a>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="care-id">#FAM-2022</span></td>
+                                    <td>
+                                        <div class="client-info">
+                                            <img src="https://ui-avatars.com/api/?name=Chen+Family&background=random" alt="" class="client-avatar">
+                                            <span>Chen Family</span>
+                                        </div>
+                                    </td>
+                                    <td>Family Connections</td>
+                                    <td><span class="badge-status status-closed">Completed</span></td>
+                                    <td>Jul 02, 2026</td>
+                                    <td>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-eye"></i></a>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="care-id">#FAM-2021</span></td>
+                                    <td>
+                                        <div class="client-info">
+                                            <img src="https://ui-avatars.com/api/?name=Patel+Family&background=random" alt="" class="client-avatar">
+                                            <span>Patel Family</span>
+                                        </div>
+                                    </td>
+                                    <td>Early Learning Programs</td>
+                                    <td><span class="badge-status status-active">Active</span></td>
+                                    <td>Jun 30, 2026</td>
+                                    <td>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-eye"></i></a>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Care Plans Section -->
+            <section class="content-section" id="care-plans">
+                <div class="section-header">
+                    <h1 class="section-title">Children & Families</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active">Care Plans</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="category-card">
+                            <div class="category-icon bg-primary-soft">
+                                <i class="fas fa-baby-carriage text-primary"></i>
+                            </div>
+                            <h4>Daycare Enrollment</h4>
+                            <p>Welcome families to our nurturing daycare and preschool rooms.</p>
+                            <a href="contact.html" class="btn btn-outline-primary btn-sm">Explore</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="category-card">
+                            <div class="category-icon bg-danger-soft">
+                                <i class="fas fa-shield-alt text-danger"></i>
+                            </div>
+                            <h4>Safety & Wellbeing</h4>
+                            <p>Daily wellbeing check-ins help us care for every child thoughtfully.</p>
+                            <a href="contact.html" class="btn btn-outline-danger btn-sm">Explore</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="category-card">
+                            <div class="category-icon bg-success-soft">
+                                <i class="fas fa-seedling text-success"></i>
+                            </div>
+                            <h4>Early Learning Programs</h4>
+                            <p>Play-based activities support language, movement, and early learning.</p>
+                            <a href="contact.html" class="btn btn-outline-success btn-sm">Explore</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="category-card">
+                            <div class="category-icon bg-warning-soft">
+                                <i class="fas fa-users text-warning"></i>
+                            </div>
+                            <h4>Family Connections</h4>
+                            <p>Regular updates keep families connected to their little one's day.</p>
+                            <a href="contact.html" class="btn btn-outline-warning btn-sm">Explore</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Daycare Rooms Section -->
+            <section class="content-section" id="daycare-rooms">
+                <div class="section-header">
+                    <h1 class="section-title">Daycare Rooms</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="service.html">Care Services</a></li>
+                            <li class="breadcrumb-item active">Daycare Rooms</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="content-card">
+                    <div class="card-header-custom">
+                        <h5 class="card-title">Room Updates</h5>
+                        <a href="contact.html" class="btn btn-sm btn-primary">Add Child Profile</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Child ID</th>
+                                    <th>Family</th>
+                                    <th>Room</th>
+                                    <th>Age Group</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="care-id">#CLD-001</span></td>
+                                    <td>Busy Bees Family</td>
+                                    <td>Sunflower Room</td>
+                                    <td>Infants (6-12 months)</td>
+                                    <td><span class="badge-status status-active">Active</span></td>
+                                    <td>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-eye"></i></a>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="care-id">#CLD-002</span></td>
+                                    <td>Rivera Family</td>
+                                    <td>Daisy Room</td>
+                                    <td>Toddlers (1-3 years)</td>
+                                    <td><span class="badge-status status-pending">Pending</span></td>
+                                    <td>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-eye"></i></a>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Health & Safety Section -->
+            <section class="content-section" id="health-safety">
+                <div class="section-header">
+                    <h1 class="section-title">Health & Safety</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="service.html">Care Services</a></li>
+                            <li class="breadcrumb-item active">Health & Safety</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="content-card">
+                    <div class="card-header-custom">
+                        <h5 class="card-title">Wellbeing & Safety</h5>
+                        <a href="contact.html" class="btn btn-sm btn-primary">New Assessment</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Check-in ID</th>
+                                    <th>Family</th>
+                                    <th>Care Review</th>
+                                    <th>Priority</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="care-id">#SAFE-001</span></td>
+                                    <td>Sunshine Family</td>
+                                    <td>Classroom Safety Review</td>
+                                    <td><span class="badge-status status-active">High</span></td>
+                                    <td><span class="badge-status status-active">In Progress</span></td>
+                                    <td>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-eye"></i></a>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="care-id">#SAFE-002</span></td>
+                                    <td>Chen Family</td>
+                                    <td>Rest Area Check</td>
+                                    <td><span class="badge-status status-pending">Medium</span></td>
+                                    <td><span class="badge-status status-pending">Scheduled</span></td>
+                                    <td>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-eye"></i></a>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Family Connections Section -->
+            <section class="content-section" id="family-connections">
+                <div class="section-header">
+                    <h1 class="section-title">Family Connections</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="service.html">Care Services</a></li>
+                            <li class="breadcrumb-item active">Family Connections</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="content-card">
+                    <div class="card-header-custom">
+                        <h5 class="card-title">Family Connections</h5>
+                        <a href="contact.html" class="btn btn-sm btn-primary">Add Child Profile</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Family ID</th>
+                                    <th>Family</th>
+                                    <th>Community Group</th>
+                                    <th>Families</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="care-id">#FAM-101</span></td>
+                                    <td>Sunshine Families</td>
+                                    <td>Parent Playgroup</td>
+                                    <td>12 families</td>
+                                    <td><span class="badge-status status-active">Active</span></td>
+                                    <td>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-eye"></i></a>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="care-id">#FAM-102</span></td>
+                                    <td>Moonbeam Families</td>
+                                    <td>Weekend Storytime</td>
+                                    <td>8 families</td>
+                                    <td><span class="badge-status status-pending">Planning</span></td>
+                                    <td>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-eye"></i></a>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Learning Programs Section -->
+            <section class="content-section" id="learning-programs">
+                <div class="section-header">
+                    <h1 class="section-title">Learning Programs</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="service.html">Care Services</a></li>
+                            <li class="breadcrumb-item active">Learning Programs</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="content-card">
+                    <div class="card-header-custom">
+                        <h5 class="card-title">Learning Activities</h5>
+                        <a href="contact.html" class="btn btn-sm btn-primary">New Care Plan</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Child ID</th>
+                                    <th>Family</th>
+                                    <th>Room</th>
+                                    <th>Activity Focus</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="care-id">#LEARN-001</span></td>
+                                    <td>Busy Bees Family</td>
+                                    <td>Infant Room</td>
+                                    <td>Sensory Play</td>
+                                    <td><span class="badge-status status-active">Active</span></td>
+                                    <td>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-eye"></i></a>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="care-id">#LEARN-002</span></td>
+                                    <td>Rivera Family</td>
+                                    <td>Toddler Room</td>
+                                    <td>Storytime & Movement</td>
+                                    <td><span class="badge-status status-pending">Planning</span></td>
+                                    <td>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-eye"></i></a>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Parent Support Section -->
+            <section class="content-section" id="support">
+                <div class="section-header">
+                    <h1 class="section-title">Parent Support</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active">Parent Support</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="fas fa-ticket-alt text-primary"></i>
+                            </div>
+                            <h5>Support Tickets</h5>
+                            <p>Follow family questions and requests through to resolution.</p>
+                            <div class="document-meta">
+                                <span><i class="fas fa-ticket"></i> 87 open</span>
+                                <a href="contact.html" class="btn btn-sm btn-primary">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="fas fa-book text-success"></i>
+                            </div>
+                            <h5>Knowledge Base</h5>
+                            <p>Helpful care routines and family resources.</p>
+                            <div class="document-meta">
+                                <span><i class="fas fa-file"></i> 156 articles</span>
+                                <a href="contact.html" class="btn btn-sm btn-primary">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="fas fa-phone-alt text-warning"></i>
+                            </div>
+                            <h5>Help Desk</h5>
+                            <p>A friendly team is ready to help families during center hours.</p>
+                            <div class="document-meta">
+                                <span><i class="fas fa-headset"></i> 12 agents</span>
+                                <a href="contact.html" class="btn btn-sm btn-primary">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Facilities Section -->
+            <section class="content-section" id="facilities">
+                <div class="section-header">
+                    <h1 class="section-title">Our Facilities</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active">Our Facilities</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="content-card">
+                    <div class="card-header-custom">
+                        <h5 class="card-title">Room Monitoring</h5>
+                        <a href="contact.html" class="btn btn-sm btn-primary">Add Care Room</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Room ID</th>
+                                    <th>Room Name</th>
+                                    <th>Location</th>
+                                    <th>Occupancy</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="care-id">#ROOM-001</span></td>
+                                    <td>Sunflower Room</td>
+                                    <td>Infant Wing</td>
+                                    <td>8 / 10 children</td>
+                                    <td><span class="badge-status status-active">Open</span></td>
+                                    <td>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-eye"></i></a>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="care-id">#ROOM-002</span></td>
+                                    <td>Daisy Room</td>
+                                    <td>Toddler Wing</td>
+                                    <td>10 / 12 children</td>
+                                    <td><span class="badge-status status-active">Open</span></td>
+                                    <td>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-eye"></i></a>
+                                        <a href="contact.html" class="btn-action"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Center Insights Section -->
+            <section class="content-section" id="analytics">
+                <div class="section-header">
+                    <h1 class="section-title">Center Insights</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active">Center Insights</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="fas fa-chart-pie text-primary"></i>
+                            </div>
+                            <h5>Performance Reports</h5>
+                            <p>Daily room routines and attendance overview.</p>
+                            <div class="document-meta">
+                                <span><i class="fas fa-file"></i> 24 reports</span>
+                                <a href="contact.html" class="btn btn-sm btn-primary">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="fas fa-users text-success"></i>
+                            </div>
+                            <h5>Family Center Insights</h5>
+                            <p>Family usage patterns and satisfaction metrics.</p>
+                            <div class="document-meta">
+                                <span><i class="fas fa-file"></i> 18 reports</span>
+                                <a href="contact.html" class="btn btn-sm btn-primary">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="fas fa-dollar-sign text-warning"></i>
+                            </div>
+                            <h5>Enrollment & Tuition Summary</h5>
+                            <p>Enrollment and center operations overview.</p>
+                            <div class="document-meta">
+                                <span><i class="fas fa-file"></i> 12 reports</span>
+                                <a href="contact.html" class="btn btn-sm btn-primary">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="content-section" id="settings">
+                <div class="section-header">
+                    <h1 class="section-title">Settings</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active">Settings</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="content-card">
+                            <div class="card-header-custom">
+                                <h5 class="card-title">General Settings</h5>
+                            </div>
+                            <div class="card-body-custom">
+                                <form class="settings-form">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Center Name</label>
+                                            <input type="text" class="form-control-custom" value="Little Bloom Childcare">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Email Address</label>
+                                            <input type="email" class="form-control-custom" value="care@littlebloom.com">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Phone Number</label>
+                                            <input type="tel" class="form-control-custom" value="+1 (555) 123-4567">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Timezone</label>
+                                            <select class="form-control-custom">
+                                                <option>UTC-5 (Eastern Time)</option>
+                                                <option>UTC-6 (Central Time)</option>
+                                                <option>UTC-7 (Mountain Time)</option>
+                                                <option>UTC-8 (Pacific Time)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Address</label>
+                                            <textarea class="form-control-custom" rows="3">Little Bloom Family Center</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <a href="contact.html" class="btn btn-primary">Save Changes</a>
+                                        <a href="contact.html" class="btn btn-outline-secondary ms-2">Cancel</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="content-card">
+                            <div class="card-header-custom">
+                                <h5 class="card-title">Notifications</h5>
+                            </div>
+                            <div class="card-body-custom">
+                                <div class="notification-settings">
+                                    <div class="form-check-custom">
+                                        <input type="checkbox" checked id="emailNotif">
+                                        <label for="emailNotif">Email Notifications</label>
+                                    </div>
+                                    <div class="form-check-custom">
+                                        <input type="checkbox" checked id="ticketUpdates">
+                                        <label for="ticketUpdates">Family Messages</label>
+                                    </div>
+                                    <div class="form-check-custom">
+                                        <input type="checkbox" id="smsNotif">
+                                        <label for="smsNotif">SMS Notifications</label>
+                                    </div>
+                                    <div class="form-check-custom">
+                                        <input type="checkbox" checked id="weeklyReport">
+                                        <label for="weeklyReport">Weekly Reports</label>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <a href="contact.html" class="btn btn-primary w-100">Save Preferences</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <p>&copy; 2026 Little Bloom Childcare. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            const sidebarClose = document.getElementById('sidebarClose');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            const profileDropdown = document.getElementById('profileDropdown');
+            const profileBtn = document.getElementById('profileBtn');
+            const menuItems = document.querySelectorAll('.sidebar .menu-item[data-section]');
+            const contentSections = document.querySelectorAll('.main-content .content-section');
+
+            function closeMobileSidebar() {
+                sidebar.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function showSection(sectionId) {
+                const targetSection = document.getElementById(sectionId);
+                if (!targetSection || !targetSection.classList.contains('content-section')) return;
+
+                menuItems.forEach(function(item) {
+                    item.classList.toggle('active', item.dataset.section === sectionId);
+                });
+                contentSections.forEach(function(section) {
+                    section.classList.toggle('active', section === targetSection);
+                });
+
+                const heading = targetSection.querySelector('.section-title');
+                if (heading) document.title = 'Little Bloom | ' + heading.textContent.trim();
+                if (window.innerWidth < 992) closeMobileSidebar();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            menuItems.forEach(function(item) {
+                item.querySelector('a').addEventListener('click', function(event) {
+                    event.preventDefault();
+                    showSection(item.dataset.section);
+                });
+            });
+
+            hamburgerMenu.addEventListener('click', function() {
+                sidebar.classList.add('active');
+                mobileOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            sidebarClose.addEventListener('click', closeMobileSidebar);
+            mobileOverlay.addEventListener('click', closeMobileSidebar);
+
+            const savedSidebarState = localStorage.getItem('adminSidebarCollapsed');
+            if (savedSidebarState === 'true' && window.innerWidth >= 992) {
+                sidebar.classList.add('collapsed');
+            }
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('collapsed');
+                localStorage.setItem('adminSidebarCollapsed', sidebar.classList.contains('collapsed'));
+            });
+
+            profileBtn.addEventListener('click', function(event) {
+                event.stopPropagation();
+                const isOpen = profileDropdown.classList.toggle('active');
+                profileBtn.setAttribute('aria-expanded', String(isOpen));
+            });
+            document.addEventListener('click', function(event) {
+                if (!profileDropdown.contains(event.target)) {
+                    profileDropdown.classList.remove('active');
+                    profileBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+            profileDropdown.querySelectorAll('a[href^="#"]').forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    profileDropdown.classList.remove('active');
+                    profileBtn.setAttribute('aria-expanded', 'false');
+                    showSection(link.getAttribute('href').slice(1));
+                });
+            });
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 992) closeMobileSidebar();
+            });
+        });
+    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
